@@ -166,6 +166,12 @@ abstract class BaseAdapter
             $bindings = array_merge($bindings, $updateBindings);
         }
 
+        if (isset($statements['onduplicateignore'])) {
+            if ($statements['onduplicateignore']) {
+                $sqlArray[] = 'ON DUPLICATE KEY IGNORE ';
+            }
+        }
+
         $sql = $this->concatenateQuery($sqlArray, ' ', false);
 
         return compact('sql', 'bindings');

@@ -421,6 +421,15 @@ class QueryBuilderHandler
     }
 
     /**
+     * @return $this
+     */
+    public function onDuplicateKeyIgnore()
+    {
+        $this->addStatement('onduplicateignore', true);
+        return $this;
+    }
+
+    /**
      *
      */
     public function delete()
