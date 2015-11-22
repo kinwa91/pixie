@@ -180,6 +180,22 @@ class QueryBuilderHandler
     }
 
     /**
+     * Get PDO Statement
+     *
+     * @return PDOStatement instance
+     */
+    public function getPDOStatement() {
+        if (is_null($this->pdoStatement)) {
+            $queryObject = $this->getQuery('select');
+            list($this->pdoStatement, $executionTime) = $this->statement(
+                $queryObject->getSql(),
+                $queryObject->getBindings()
+            );
+        }
+        return $this->pdoStatement;
+    }
+
+    /**
      * Get first row
      *
      * @return \stdClass|null
